@@ -1,0 +1,9 @@
+# اجازه دسترسی به صفحات خطا
+Order allow,deny
+Allow from all
+
+# تنظیمات امنیتی برای صفحات خطا
+<Files "*.html">
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+</Files>

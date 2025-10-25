@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# تنظیمات امنیتی
+ServerSignature Off
+Options -Indexes
+
+# تنظیمات CORS
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+
+# مدیریت preflight
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# مسیریابی API
+RewriteRule ^api/(.*)$ api/index.php?endpoint=$1 [QSA,L]
+
+# مسیریابی صفحات
+RewriteRule ^dashboard/?$ dashboard.html [L]
+RewriteRule ^order/?$ order.html [L]
+RewriteRule ^products/?$ products.html [L]
+
+# هدایت root به index.html
+RewriteCond %{REQUEST_URI} ^/Chester%20old/3/?$
+RewriteRule ^(.*)$ index.html [L]
+
+# اگر فایل وجود ندارد، به index.html هدایت کن (برای SPA)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^(.*)$ index.html [QSA,L]

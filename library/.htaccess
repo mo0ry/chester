@@ -1,0 +1,10 @@
+# مسدود کردن کامل دسترسی به دایرکتوری library
+Order deny,allow
+Deny from all
+
+# اجازه دسترسی فقط از localhost (برای توسعه)
+# Allow from 127.0.0.1
+# Allow from ::1
+
+# نمایش خطای 403
+ErrorDocument 403 "Access Forbidden"

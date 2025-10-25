@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# اجازه دسترسی به فایل‌های PHP
+<Files "*.php">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# مسیریابی همه درخواست‌ها به index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

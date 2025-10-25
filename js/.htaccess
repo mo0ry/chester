@@ -1,0 +1,13 @@
+# اجازه دسترسی به فایل‌های JavaScript
+Order allow,deny
+Allow from all
+
+# تنظیمات کش برای فایل‌های JS
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Cache-Control "public, immutable"
+</IfModule>

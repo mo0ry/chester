@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد - سیستم سفارشات چستر</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- استایل‌های سفارشی -->
+	<link rel="stylesheet" href="css/components/styles.css">
+    <link rel="stylesheet" href="css/components/dashboard.css">
+    
+    <!-- تنظیمات API -->
+    <script>
+        window.API_BASE_URL = (function() {
+            const currentPath = window.location.pathname;
+            const pathParts = currentPath.split('/');
+            
+            const lastPart = pathParts[pathParts.length - 1];
+            if (lastPart.includes('.html') || lastPart === '') {
+                pathParts.pop();
+            }
+            
+            const basePath = pathParts.join('/');
+            const apiUrl = window.location.origin + basePath + '/api';
+            console.log('📊 Dashboard - API Base URL:', apiUrl);
+            return apiUrl;
+        })();
+    </script>
+</head>
+<body class="dashboard-gradient-bg">
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="dashboard-stat-icon">
+                        <i class="fas fa-couch text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-white font-bold text-lg">چستر - سیستم سفارشات</h1>
+                        <p class="text-white/80 text-sm">داشبورد کاربری</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="order.html" class="dashboard-btn dashboard-btn-primary">
+                        <i class="fas fa-plus"></i>
+                        <span>ثبت سفارش جدید</span>
+                    </a>
+                    
+                    <div class="text-white text-left">
+                        <div class="font-semibold" data-user-info="name">کاربر سیستم</div>
+                        <div class="text-white/60 text-sm" data-user-info="username">@username</div>
+                    </div>
+                    
+                    <div class="w-12 h-12 dashboard-stat-icon rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-white"></i>
+                    </div>
+                    
+                    <button id="logout-btn" class="dashboard-btn dashboard-btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>خروج</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        <!-- آمار کلی -->
+        <div class="dashboard-stats-grid">
+            <div class="dashboard-stat-card dashboard-hover-lift">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="dashboard-stat-value" id="total-orders-count">0</div>
+                        <div class="dashboard-stat-label">کل سفارشات</div>
+                    </div>
+                    <div class="dashboard-stat-icon">
+                        <i class="fas fa-shopping-cart text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-stat-card dashboard-hover-lift">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="dashboard-stat-value" id="active-orders-count">0</div>
+                        <div class="dashboard-stat-label">سفارشات فعال</div>
+                    </div>
+                    <div class="dashboard-stat-icon">
+                        <i class="fas fa-spinner text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-stat-card dashboard-hover-lift">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="dashboard-stat-value" id="pending-orders-count">0</div>
+                        <div class="dashboard-stat-label">در انتظار تایید</div>
+                    </div>
+                    <div class="dashboard-stat-icon">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-stat-card dashboard-hover-lift">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="dashboard-stat-value" id="delivery-days">27</div>
+                        <div class="dashboard-stat-label">روز تحویل</div>
+                    </div>
+                    <div class="dashboard-stat-icon">
+                        <i class="fas fa-calendar-alt text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- سفارشات اخیر -->
+        <div class="dashboard-glass-card p-6 mt-6">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                    <div class="dashboard-stat-icon ml-4">
+                        <i class="fas fa-list text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-white text-xl font-bold">سفارشات اخیر</h2>
+                </div>
+                <button id="refresh-btn" class="dashboard-btn dashboard-btn-outline text-sm">
+                    <i class="fas fa-sync-alt"></i>
+                    بروزرسانی
+                </button>
+            </div>
+            
+            <div id="orders-container">
+                <div class="dashboard-loading">
+                    <i class="fas fa-spinner dashboard-loading-spinner"></i>
+                    <div>در حال بارگذاری سفارشات...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript - با ترتیب صحیح -->
+    <script src="js/utils/TokenManager.js"></script>
+    <script src="js/utils/ApiClient.js"></script>
+    <script src="js/components/AuthManager.js"></script>
+    <script src="js/components/DashboardManager.js"></script>
+    
+</body>
+</html>

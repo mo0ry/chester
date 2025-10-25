@@ -1,0 +1,228 @@
+/* استایل‌های مربوط به داشبورد */
+.dashboard-gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.dashboard-nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+}
+
+.dashboard-stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+}
+
+.dashboard-hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-stat-icon {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+}
+
+.dashboard-stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.dashboard-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.dashboard-btn-primary {
+    background: rgba(239, 68, 68, 0.8);
+    color: white;
+}
+
+.dashboard-btn-primary:hover {
+    background: rgb(239, 68, 68);
+    transform: translateY(-2px);
+}
+
+.dashboard-btn-outline {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dashboard-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.dashboard-loading-spinner {
+    animation: spin 1s linear infinite;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-orders-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.dashboard-order-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dashboard-order-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.order-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-pending {
+    background: rgba(245, 158, 11, 0.2);
+    color: rgb(255, 237, 213);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-processing {
+    background: rgba(59, 130, 246, 0.2);
+    color: rgb(219, 234, 254);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.status-completed {
+    background: rgba(34, 197, 94, 0.2);
+    color: rgb(220, 252, 231);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.quick-access-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.quick-access-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+}
+
+.quick-access-icon {
+    width: 4rem;
+    height: 4rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .dashboard-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-access-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-access-grid {
+        grid-template-columns: 1fr;
+    }
+}

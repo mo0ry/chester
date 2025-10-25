@@ -1,0 +1,457 @@
+/* استایل‌های پایه برای صفحه سفارش */
+.dashboard-gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.dashboard-nav {
+    background: rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 0;
+}
+
+.dashboard-glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.dashboard-btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2;
+}
+
+.dashboard-btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white;
+}
+
+.dashboard-btn-success {
+    @apply bg-green-600 hover:bg-green-700 text-white;
+}
+
+.dashboard-btn-warning {
+    @apply bg-yellow-600 hover:bg-yellow-700 text-white;
+}
+
+.dashboard-btn-outline {
+    @apply bg-transparent border border-white/40 hover:bg-white/20 text-white;
+}
+
+.dashboard-stat-icon {
+    @apply w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center;
+}
+
+/* استایل‌های مراحل */
+.step {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    background: rgba(59, 130, 246, 0.8);
+    color: white;
+}
+
+.step.completed {
+    background: rgba(34, 197, 94, 0.8);
+    color: white;
+}
+
+.step-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 1rem;
+}
+
+/* فرم‌ها */
+.order-form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    color: white;
+    font-family: 'Vazirmatn', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.order-form-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.order-form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.order-form-input:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.order-form-input:hover::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.order-form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    color: white;
+    font-family: 'Vazirmatn', sans-serif;
+    transition: all 0.3s ease;
+    resize: none;
+    height: 5rem;
+}
+
+.order-form-textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.order-form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.order-form-textarea:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.order-form-textarea:hover::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.order-form-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.order-form-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    color: white;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.order-form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.order-form-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.order-form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* دکمه‌ها */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* محصولات */
+.products-section {
+    margin-bottom: 2rem;
+}
+
+.product-selector-group {
+    margin-bottom: 1.5rem;
+}
+
+.product-fields {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.products-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.product-card {
+    @apply bg-white/10 rounded-xl p-4 border border-white/30 hover:border-white/50 transition-all duration-200;
+}
+
+.product-header {
+    @apply flex justify-between items-center mb-3;
+}
+
+.product-name {
+    @apply text-white font-semibold text-base;
+}
+
+.product-code {
+    @apply text-white/70 text-xs bg-white/15 px-2 py-1 rounded-md;
+}
+
+.product-details {
+    @apply space-y-2 mb-3;
+}
+
+.product-color {
+    @apply text-white/80 text-sm;
+}
+
+.product-comment {
+    @apply text-white/70 text-xs bg-white/10 p-2 rounded-md;
+}
+
+.product-price {
+    @apply text-green-400 text-sm font-semibold;
+}
+
+.product-quantities {
+    @apply space-y-2 mb-3;
+}
+
+.quantity-group {
+    @apply flex items-center justify-between gap-2;
+}
+
+.quantity-group label {
+    @apply text-white/80 text-sm flex-1;
+}
+
+.quantity-group input {
+    width: 4rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.quantity-group input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.max-quantity {
+    @apply text-white/60 text-xs w-6 text-left;
+}
+
+.product-actions {
+    @apply flex justify-end gap-2;
+}
+
+/* خلاصه سفارش */
+.order-summary {
+    @apply bg-white/15 rounded-lg p-3 border border-white/30;
+}
+
+.summary-item {
+    @apply bg-white/10 rounded-md p-2 mb-2 last:mb-0;
+}
+
+/* پیش‌نمایش */
+.order-preview {
+    @apply space-y-4;
+}
+
+.preview-section {
+    @apply bg-white/10 rounded-lg p-3 border border-white/30;
+}
+
+.preview-item {
+    @apply flex justify-between items-center py-1.5 border-b border-white/20 last:border-b-0;
+}
+
+.preview-product {
+    @apply bg-white/10 rounded-md p-2.5 border border-white/20;
+}
+
+/* پیام‌ها */
+.message-container {
+    @apply fixed top-4 right-4 z-[1000] space-y-2 max-w-sm;
+}
+
+.message {
+    @apply rounded-lg p-3 border bg-white/20;
+}
+
+.message-success {
+    @apply border-green-600 text-green-300;
+}
+
+.message-error {
+    @apply border-red-600 text-red-300;
+}
+
+.message-content {
+    @apply flex items-center justify-between;
+}
+
+.message-close {
+    @apply text-inherit opacity-80 hover:opacity-100;
+}
+
+/* نمایشگر لودینگ */
+.dashboard-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.dashboard-loading-spinner {
+    animation: spin 1s linear infinite;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.loading-overlay {
+    @apply fixed inset-0 bg-black/60 flex items-center justify-center z-[1100];
+}
+
+.loading-content {
+    @apply bg-white rounded-lg p-5 shadow-xl max-w-xs text-center;
+}
+
+.loading-spinner {
+    @apply w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3;
+}
+
+.loading-text {
+    @apply text-gray-800 font-medium text-sm;
+}
+
+/* خطاها */
+.field-error {
+    @apply text-red-500 text-xs mt-1;
+}
+
+.error {
+    @apply border-red-500;
+}
+
+/* حالت‌های مخفی */
+.hidden {
+    display: none;
+}
+
+.step-content {
+    @apply transition-opacity duration-300;
+}
+
+/* انیمیشن‌ها */
+.animate__animated {
+    animation-duration: 0.5s;
+}
+
+.animate__fadeIn {
+    animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* اسکرول بار سفارشی */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* پشتیبانی از فایرفاکس */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.15);
+}
+
+/* رسپانسیو */
+@media (max-width: 768px) {
+    .products-grid {
+        @apply grid-cols-1;
+    }
+    
+    .step-line {
+        @apply mx-2;
+    }
+    
+    .preview-item {
+        @apply flex-col items-start space-y-1.5;
+    }
+    
+    .quantity-group {
+        @apply flex-col items-start space-y-1.5;
+    }
+    
+    .quantity-group input {
+        width: 100%;
+    }
+    
+    .dashboard-glass-card {
+        @apply p-4;
+    }
+    
+    .order-form-input,
+    .order-form-textarea {
+        padding: 0.625rem 0.875rem;
+    }
+    
+    .order-form .input-icon .order-form-input,
+    .order-form .input-icon .order-form-textarea {
+        padding-right: 2.5rem;
+    }
+    
+    .order-form-textarea {
+        height: 4rem;
+    }
+}

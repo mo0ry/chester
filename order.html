@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سفارش جدید - سیستم سفارشات چستر</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- استایل‌های سفارشی -->
+    <link rel="stylesheet" href="css/components/styles.css">
+    <link rel="stylesheet" href="css/components/orders.css">
+    
+    <!-- تنظیمات API -->
+    <script>
+        window.API_BASE_URL = (function() {
+            const currentPath = window.location.pathname;
+            const pathParts = currentPath.split('/');
+            
+            const lastPart = pathParts[pathParts.length - 1];
+            if (lastPart.includes('.html') || lastPart === '') {
+                pathParts.pop();
+            }
+            
+            const basePath = pathParts.join('/');
+            const apiUrl = window.location.origin + basePath + '/api';
+            console.log('📦 Order - API Base URL:', apiUrl);
+            return apiUrl;
+        })();
+    </script>
+</head>
+<body class="dashboard-gradient-bg">
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="dashboard-stat-icon">
+                        <i class="fas fa-couch text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-white font-bold text-lg">چستر - سیستم سفارشات</h1>
+                        <p class="text-white/80 text-sm">ثبت سفارش جدید</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="dashboard.html" class="dashboard-btn dashboard-btn-outline">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>بازگشت به داشبورد</span>
+                    </a>
+                    
+                    <div class="text-white text-left">
+                        <div class="font-semibold" data-user-info="name">کاربر سیستم</div>
+                        <div class="text-white/60 text-sm" data-user-info="username">@username</div>
+                    </div>
+                    
+                    <div class="w-12 h-12 dashboard-stat-icon rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        <!-- نمایشگر مراحل -->
+        <div class="max-w-4xl mx-auto mb-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="step completed" data-step="1">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="step active" data-step="2">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="step" data-step="3">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="step" data-step="4">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between mt-2 text-sm text-white/70">
+                <span>اطلاعات مشتری</span>
+                <span>محصولات</span>
+                <span>پرداخت</span>
+                <span>تأیید نهایی</span>
+            </div>
+        </div>
+
+        <!-- کانتینر اصلی -->
+        <div class="max-w-4xl mx-auto dashboard-glass-card p-6">
+            
+            <!-- مرحله 1: اطلاعات مشتری -->
+            <div id="step-1" class="step-content space-y-6">
+                <h2 class="text-white text-2xl font-bold text-center">اطلاعات مشتری</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- ستون سمت راست -->
+                    <div class="space-y-4">
+                        <div>
+                            <label for="customer-name" class="order-form-label">نام کامل مشتری *</label>
+                            <input type="text" id="customer-name" class="order-form-input" placeholder="نام و نام خانوادگی" required>
+                        </div>
+                        
+                        <div>
+                            <label for="customer-phone" class="order-form-label">شماره تلفن *</label>
+                            <input type="tel" id="customer-phone" class="order-form-input" placeholder="09123456789" pattern="09\d{9}" required>
+                        </div>
+                        
+                        <div>
+                            <label for="order-date" class="order-form-label">تاریخ سفارش</label>
+                            <input type="text" id="order-date" class="order-form-input" readonly>
+                        </div>
+                    </div>
+                    
+                    <!-- ستون سمت چپ -->
+                    <div class="space-y-4">
+                        <div>
+                            <label for="customer-address" class="order-form-label">آدرس تحویل *</label>
+                            <textarea id="customer-address" class="order-form-input order-form-textarea" placeholder="آدرس کامل جهت ارسال سفارش" required></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="delivery-date" class="order-form-label">تاریخ تحویل</label>
+                            <input type="text" id="delivery-date" class="order-form-input" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- نوع خرید -->
+                <div class="mt-6">
+                    <label class="order-form-label">نوع خرید</label>
+                    <div class="flex flex-wrap gap-4 mt-2">
+                        <label class="flex items-center text-white/80 cursor-pointer">
+                            <input type="radio" name="order-type" value="فروش خانگی" class="ml-2" checked>
+                            <span>فروش خانگی</span>
+                        </label>
+                        <label class="flex items-center text-white/80 cursor-pointer">
+                            <input type="radio" name="order-type" value="پروژه" class="ml-2">
+                            <span>پروژه</span>
+                        </label>
+                        <label class="flex items-center text-white/80 cursor-pointer">
+                            <input type="radio" name="order-type" value="کف نمایشگاه" class="ml-2">
+                            <span>کف نمایشگاه</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions mt-8 text-left">
+                    <button id="next-step-btn" class="dashboard-btn dashboard-btn-primary">
+                        مرحله بعد
+                        <i class="fas fa-arrow-left mr-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مرحله 2: محصولات -->
+            <div id="step-2" class="step-content hidden">
+                <h2 class="text-white text-2xl font-bold mb-6 text-center">انتخاب محصولات</h2>
+                
+                <!-- لیست محصولات -->
+                <div id="products-container" class="mb-6">
+                    <div class="dashboard-loading">
+                        <i class="fas fa-spinner dashboard-loading-spinner"></i>
+                        <div>در حال بارگذاری محصولات...</div>
+                    </div>
+                </div>
+
+                <div class="form-actions mt-8 flex justify-between">
+                    <button id="prev-step-btn" class="dashboard-btn dashboard-btn-outline">
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        مرحله قبل
+                    </button>
+                    
+                    <button id="next-step-btn" class="dashboard-btn dashboard-btn-primary">
+                        مرحله بعد
+                        <i class="fas fa-arrow-left mr-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مرحله 3: پرداخت -->
+            <div id="step-3" class="step-content hidden">
+                <h2 class="text-white text-2xl font-bold mb-6 text-center">اطلاعات پرداخت</h2>
+                
+                <div class="max-w-md mx-auto space-y-6">
+                    <div>
+                        <label for="payment-amount" class="order-form-label">مبلغ پرداختی (تومان)</label>
+                        <input type="number" id="payment-amount" class="order-form-input" placeholder="0" min="0" step="1000">
+                        <div class="text-white/60 text-sm mt-1">در صورت پرداخت نقدی، مبلغ را وارد کنید</div>
+                    </div>
+                    
+                    <div>
+                        <label class="order-form-label">روش پرداخت</label>
+                        <div class="space-y-3 mt-2">
+                            <label class="flex items-center p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10 transition-colors text-white/80">
+                                <input type="radio" name="payment-method" value="نقدی" class="ml-3" checked>
+                                <i class="fas fa-money-bill-wave text-green-400 ml-2"></i>
+                                <span>نقدی</span>
+                            </label>
+                            
+                            <label class="flex items-center p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10 transition-colors text-white/80">
+                                <input type="radio" name="payment-method" value="کارت به کارت" class="ml-3">
+                                <i class="fas fa-credit-card text-blue-400 ml-2"></i>
+                                <span>کارت به کارت</span>
+                            </label>
+                            
+                            <label class="flex items-center p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10 transition-colors text-white/80">
+                                <input type="radio" name="payment-method" value="اقساط" class="ml-3">
+                                <i class="fas fa-calendar-alt text-yellow-400 ml-2"></i>
+                                <span>اقساط</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions mt-8 flex justify-between">
+                    <button id="prev-step-btn" class="dashboard-btn dashboard-btn-outline">
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        مرحله قبل
+                    </button>
+                    
+                    <button id="next-step-btn" class="dashboard-btn dashboard-btn-primary">
+                        مرحله بعد
+                        <i class="fas fa-arrow-left mr-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- مرحله 4: تأیید نهایی -->
+            <div id="step-4" class="step-content hidden">
+                <h2 class="text-white text-2xl font-bold mb-6 text-center">تأیید نهایی سفارش</h2>
+                
+                <!-- پیش‌نمایش سفارش -->
+                <div id="order-preview" class="mb-6">
+                    <!-- پیش‌نمایش توسط JavaScript پر می‌شود -->
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <p class="text-white/70">لطفاً اطلاعات سفارش را بررسی کرده و در صورت صحیح بودن، ثبت نهایی را بزنید.</p>
+                    
+                    <div class="flex gap-4 justify-center">
+                        <button id="print-preview-btn" class="dashboard-btn dashboard-btn-warning">
+                            <i class="fas fa-print ml-2"></i>
+                            پرینت پیش‌نمایش
+                        </button>
+                        
+                        <button id="submit-order-btn" class="dashboard-btn dashboard-btn-success">
+                            <i class="fas fa-check ml-2"></i>
+                            ثبت نهایی سفارش
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-actions mt-8">
+                    <button id="prev-step-btn" class="dashboard-btn dashboard-btn-outline">
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        مرحله قبل
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- اسکریپت‌ها -->
+    <script src="js/utils/TokenManager.js"></script>
+    <script src="js/utils/ApiClient.js"></script>
+    <script src="js/utils/LocalStorageManager.js"></script>
+    <script src="js/components/OrderManager.js"></script>
+
+    <script>
+        // تنظیمات Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'Tahoma', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+        
+        // نمایش اطلاعات کاربر
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ DOM loaded');
+            
+            const user = TokenManager.getUser();
+            if (user) {
+                document.querySelectorAll('[data-user-info="name"]').forEach(el => {
+                    el.textContent = user.name || 'کاربر سیستم';
+                });
+                document.querySelectorAll('[data-user-info="username"]').forEach(el => {
+                    el.textContent = user.username ? `@${user.username}` : '@username';
+                });
+            }
+            
+            if (typeof OrderManager !== 'undefined') {
+                window.orderManager = new OrderManager();
+                console.log('🚀 OrderManager initialized');
+            } else {
+                console.error('❌ OrderManager not found');
+            }
+        });
+    </script>
+</body>
+</html>
