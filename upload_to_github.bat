@@ -8,7 +8,7 @@ set REPO_URL=https://github.com/mo0ry/chester.git
 :: نام کاربری GitHub
 set GITHUB_USERNAME=mo0ry
 :: توکن GitHub (جایگزین کنید با توکن جدید)
-set GITHUB_TOKEN=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
+::set GITHUB_TOKEN=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
 
 :: رفتن به پوشه پروژه
 cd /d %PROJECT_DIR%
@@ -58,15 +58,6 @@ if %ERRORLEVEL% equ 0 (
         pause
         exit /b
     )
-)
-
-:: بررسی وجود remote
-git remote -v | findstr origin >nul
-if errorlevel 1 (
-    git remote add origin %REPO_URL%
-) else (
-    echo Remote origin already exists, updating URL...
-    git remote set-url origin https://%GITHUB_USERNAME%:%GITHUB_TOKEN%@github.com/%GITHUB_USERNAME%/chester.git
 )
 
 :: اطمینان از بودن در شاخه master
